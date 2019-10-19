@@ -1,3 +1,12 @@
+/**
+ * Class that creates a Scanner object with defined methods for reading the next String or next Int
+ * Not necessary, but makes working with the Scanner more easily understood syntactically
+ * Alternate constructor takes a filename as a parameter and reads from the file rather than System.in
+ * (Currently not used in program, may be deprecated)
+ * @author  Jessica Shortz, based on work by Michael Kolling and David J. Barnes
+ * @version 2019.10.19
+ */
+
 package todolist;
 
 import java.util.GregorianCalendar;
