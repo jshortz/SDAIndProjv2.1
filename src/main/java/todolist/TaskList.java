@@ -105,10 +105,9 @@ public class TaskList {
     }
 
     public void sort() {
+        taskList.sort(Comparator.comparing(Task::getDate));
         if (commandReader.getIfTitleSort()) {
             taskList.sort(Comparator.comparing(Task::getTitle));
-        } else {
-            System.out.println("Sort by Date");
         }
     }
 
