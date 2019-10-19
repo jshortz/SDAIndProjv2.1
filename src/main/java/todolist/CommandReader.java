@@ -1,6 +1,6 @@
 package todolist;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CommandReader {
 
@@ -16,15 +16,15 @@ public class CommandReader {
         String project = inputReadFromUser.readString();
         System.out.println("Please enter a description of the task");
         String description = inputReadFromUser.readString();
-        Date date = getDateFromUser();
+        GregorianCalendar date = getDateFromUser();
         System.out.println();
         return new Task(title, project, date, description);
     }
 
-    public Date getDateFromUser() {
+    public GregorianCalendar getDateFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the year the task is due as four digits between 2019 and 9999");
-        int year = inputReadFromUser.readInt() - 1900;
+        int year = inputReadFromUser.readInt();
         inputReadFromUser.readString();
         System.out.println("Please enter the month the task is due as two digits between 1 and 12");
         int month = inputReadFromUser.readInt() - 1;
@@ -38,10 +38,44 @@ public class CommandReader {
         System.out.println("Please enter the minute the task is due as two digits between 0 and 59");
         int minute = inputReadFromUser.readInt();
         inputReadFromUser.readString();
-        return new Date(year, month, day, hour, minute);
+        GregorianCalendar date = new GregorianCalendar(year, month, day, hour, minute);
+        date.setLenient(false);
+        boolean isValidDate = true;
+        int maxDays = date.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+        int minDays = date.getActualMinimum(GregorianCalendar.DAY_OF_MONTH);
+        int maxMonth = 11;
+        int minMonth = 0;
+        int maxHour = 23;
+        int minHour = 0;
+        int maxMinutes = 59;
+        int minMinutes = 0;
+        int maxYear = 9999;
+        if (year > maxYear) {
+            System.out.println("Year exceeds maximum value.");
+            isValidDate = false;
+        }
+        if ((month > maxMonth) || (month < minMonth)) {
+            System.out.println("Invalid month.");
+            isValidDate = false;
+        }
+        if ((day > maxDays) || (day < minDays)) {
+            System.out.println("Invalid day.");
+            isValidDate = false;
+        }
+        if ((hour > maxHour) || (hour < minHour)) {
+            System.out.println("Invalid hour.");
+            isValidDate = false;
+        }
+        if ((minute > maxMinutes) || (minute < minMinutes)) {
+            System.out.println("Invalid minute.");
+            isValidDate = false;
+        }
+        while (date.before(GregorianCalendar.getInstance()) || !isValidDate) {
+            System.out.println("Please enter a valid date in the future (after " + GregorianCalendar.getInstance().getTime().toString() + " ):");
+            getDateFromUser();
+        }
+        return date;
     }
-
-
 
     public String getTaskToEditFromUser() {
         InputReader inputReadFromUser = new InputReader();
