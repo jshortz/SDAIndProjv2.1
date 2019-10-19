@@ -92,7 +92,7 @@ public class CommandReader {
     public boolean editTitle() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the title of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString();
+        String answer = inputReadFromUser.readString().toUpperCase();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -103,7 +103,7 @@ public class CommandReader {
     public boolean editProject() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Project assigned to the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString();
+        String answer = inputReadFromUser.readString().toUpperCase();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -114,7 +114,7 @@ public class CommandReader {
     public boolean editDescription() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Description of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString();
+        String answer = inputReadFromUser.readString().toUpperCase();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -125,7 +125,7 @@ public class CommandReader {
     public boolean editDate() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Due Date of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString();
+        String answer = inputReadFromUser.readString().toUpperCase();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -136,7 +136,7 @@ public class CommandReader {
     public boolean markComplete() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you wish to mark the task as complete?");
-        String answer = inputReadFromUser.readString();
+        String answer = inputReadFromUser.readString().toUpperCase();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -147,10 +147,10 @@ public class CommandReader {
     public boolean getIfTitleSort() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to sort by TITLE or DATE?");
-        String userSortAnswer = inputReadFromUser.readString();
+        String userSortAnswer = inputReadFromUser.readString().toUpperCase();
         if ((!userSortAnswer.equals("TITLE")) && (!userSortAnswer.equals("DATE"))) {
-            System.out.println("Please enter TITLE or DATE to sort by.");
-            userSortAnswer = inputReadFromUser.readString();
+            System.out.println("Please enter TITLE or DATE.");
+            userSortAnswer = inputReadFromUser.readString().toUpperCase();
         }
         if (userSortAnswer.equals("TITLE")) {
             return true;
