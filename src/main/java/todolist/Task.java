@@ -23,11 +23,11 @@ public class Task implements Serializable {
     }
 
     public String toString() {
-        String alwaysPrint = "\nTitle: " + title + "\nProject: " + project + "\nDue Date: " + date.getTime().toString() + "\nDescription: " + description + "\nID: " + id + "\n";
+        String alwaysPrint = "\nTitle: " + title + "\nProject: " + project + "\nDue Date: " + date.getTime().toString() + "\nDescription: " + description + "\nID: " + id;
         if (complete == false) {
-            return alwaysPrint + "\nComplete: No";
+            return alwaysPrint + "\nComplete: No\n";
         } else {
-            return alwaysPrint + "\nComplete: Yes";
+            return alwaysPrint + "\nComplete: Yes\n";
         }
     }
 
