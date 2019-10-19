@@ -11,6 +11,7 @@ public class Task implements Serializable {
     protected String description;
     protected String id;
     protected boolean complete;
+    private static final long serialVersionUID = 1L;
 
     public Task(String title, String project, GregorianCalendar date, String description) {
         this.title = title;
