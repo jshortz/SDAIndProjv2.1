@@ -1,10 +1,16 @@
-package todolist;
+/**
+ * ExecutableShell drives the flow of the Task Manager application
+ * @author  Jessica Shortz
+ * @version 2019.10.19
+ */
 
+package todolist;
 import java.io.*;
 import java.util.ArrayList;
 
 public class ExecutableShell {
 
+    // commands holds the commands that are available to the user
     protected static ArrayList<String> commands;
     protected TaskList toDoList;
     protected static ExecutableShell shell = new ExecutableShell();
@@ -21,14 +27,23 @@ public class ExecutableShell {
         toDoList = new TaskList();
     }
 
+    /**
+     * Displays a welcome message to the user
+     */
     public static void displayWelcome() {
         System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual.");
     }
 
+    /**
+     * Displays the available commands
+     */
     public void displayCommands() {
         System.out.println(commands.toString());
     }
 
+    /**
+     * Displays the user manual in the console output
+     */
     public void displayHelpManual() throws IOException {
         InputStream userManual = new BufferedInputStream(new FileInputStream("UserManual.md"));
         byte[] buffer = new byte[8192];
@@ -42,16 +57,28 @@ public class ExecutableShell {
         }
     }
 
+    /**
+     * Gets a command from the user
+     * @return String with command choice
+     */
     public static String getCommand() {
         InputReader userInputReader = new InputReader();
         String command = userInputReader.readString();
         return command;
     }
 
+    /**
+     * Checks the list of commands against the user input to confirm that it is a valid command
+     * @return boolean true if command is valid
+     */
     public boolean isValidCommand(String command) {
         return commands.contains(command);
     }
 
+    /**
+     * Takes the user command choice and performs relevant actions for command
+     * @param command of user choice
+     */
     public void processCommand(String command) throws IOException {
         command = command.toUpperCase();
         if (isValidCommand(command)) {
@@ -85,6 +112,9 @@ public class ExecutableShell {
         }
     }
 
+    /**
+     * Queries the user for a command to carry out
+     */
     public void queryUserForCommand() throws IOException {
         System.out.println("Please enter any of the following commands:");
         System.out.println("(Note that any command other than 'SAVE AND QUIT' will lead to a new prompt for a command)");
@@ -99,10 +129,16 @@ public class ExecutableShell {
         }
     }
 
+    /**
+     * Loads the to do list that is saved in the taskList.tmp file
+     */
     public void loadList() {
         toDoList.loadList();
     }
 
+    /**
+     * Main method
+     */
     public static void main(String[] args) throws IOException {
         shell.loadList();
         displayWelcome();
