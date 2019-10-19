@@ -27,6 +27,7 @@ public class Task implements Serializable {
      * Title, project, date, and description are based on user input
      * ID is generated from a combination of title and the date's hashCode
      * field complete is set to false by default
+     * @param title project date description
      * @return Task
      */
     public Task(String title, String project, GregorianCalendar date, String description) {
