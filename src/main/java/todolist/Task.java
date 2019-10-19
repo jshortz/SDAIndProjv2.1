@@ -1,35 +1,40 @@
 package todolist;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Task implements Serializable {
 
     protected String title;
     protected String project;
-    protected Date date;
+    protected GregorianCalendar date;
     protected String description;
     protected String id;
     protected boolean complete;
 
-    public Task(String title, String project, Date date, String description) {
+    public Task(String title, String project, GregorianCalendar date, String description) {
         this.title = title;
         this.project = project;
         this.date = date;
         this.description = description;
-        id = "" + title + date.getYear() + date.getMonth() + date.getDay() + date.getHours() + "";
+        id = "" + title + date.hashCode() + "";
         complete = false;
     }
 
     public String toString() {
-        return "\nTitle: " + title + "\nProject: " + project + "\nDue Date: " + date + "\nDescription: " + description + "\nID: " + id + "\n";
+        String alwaysPrint = "\nTitle: " + title + "\nProject: " + project + "\nDue Date: " + date.getTime().toString() + "\nDescription: " + description + "\nID: " + id + "\n";
+        if (complete == false) {
+            return alwaysPrint + "\nComplete: No";
+        } else {
+            return alwaysPrint + "\nComplete: Yes";
+        }
     }
 
     public String getTitle() {
         return title;
     }
 
-    public Date getDate() {
+    public GregorianCalendar getDate() {
         return date;
     }
 
