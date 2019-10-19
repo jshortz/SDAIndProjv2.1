@@ -1,14 +1,10 @@
 /**
- * Class that creates a Scanner object with defined methods for reading the next String or next Int
- * Not necessary, but makes working with the Scanner more easily understood syntactically
- * Alternate constructor takes a filename as a parameter and reads from the file rather than System.in
- * (Currently not used in program, may be deprecated)
- * @author  Jessica Shortz, based on work by Michael Kolling and David J. Barnes
+ * Class for reading input from the user (generally commands, generally multi-step interactions)
+ * @author  Jessica Shortz
  * @version 2019.10.19
  */
 
 package todolist;
-
 import java.util.GregorianCalendar;
 
 public class CommandReader {
@@ -17,6 +13,10 @@ public class CommandReader {
 
     }
 
+    /**
+     * Gathers the title, project, description, and due date for a new task from the user
+     * @return generic Task
+     */
     public Task getTaskToAddFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter a short title for your task.");
@@ -30,6 +30,11 @@ public class CommandReader {
         return new Task(title, project, date, description);
     }
 
+    /**
+     * Creates a GregorianCalendar date object from user inputs
+     * Includes checks against invalid inputs and prompts the user for correction
+     * @return GregorianCalendar date object
+     */
     public GregorianCalendar getDateFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the year the task is due as four digits between 2019 and 9999");
@@ -80,24 +85,36 @@ public class CommandReader {
             isValidDate = false;
         }
         while (date.before(GregorianCalendar.getInstance()) || !isValidDate) {
-            System.out.println("Please enter a valid date in the future (after " + GregorianCalendar.getInstance().getTime().toString() + " ):");
+            System.out.println("Please enter a valid future date (after " + GregorianCalendar.getInstance().getTime().toString() + " ):");
             getDateFromUser();
         }
         return date;
     }
 
+    /**
+     * Gets a title from the user for a task to edit
+     * @return String title of task to be edited
+     */
     public String getTaskToEditFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the title of the task you wish to edit:");
         return inputReadFromUser.readString();
     }
 
+    /**
+     * Gets a title from the user for a task to remove
+     * @return String title of task to be removed
+     */
     public String getTaskToRemoveFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the title of the task you wish to remove:");
         return inputReadFromUser.readString();
     }
 
+    /**
+     * Queries if user wants to edit the title of a Task
+     * @return boolean true if title should be edited
+     */
     public boolean editTitle() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the title of the task? Enter Y or N.");
@@ -109,6 +126,10 @@ public class CommandReader {
         }
     }
 
+    /**
+     * Queries if user wants to edit the project of a Task
+     * @return boolean true if project should be edited
+     */
     public boolean editProject() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Project assigned to the task? Enter Y or N.");
@@ -120,6 +141,10 @@ public class CommandReader {
         }
     }
 
+    /**
+     * Queries if user wants to edit the description of a Task
+     * @return boolean true if description should be edited
+     */
     public boolean editDescription() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Description of the task? Enter Y or N.");
@@ -131,6 +156,10 @@ public class CommandReader {
         }
     }
 
+    /**
+     * Queries if user wants to edit the due date of a Task
+     * @return boolean true if due date should be edited
+     */
     public boolean editDate() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Due Date of the task? Enter Y or N.");
@@ -142,6 +171,10 @@ public class CommandReader {
         }
     }
 
+    /**
+     * Queries if user wants to mark a Task as complete
+     * @return boolean true if Task should be marked as complete
+     */
     public boolean markComplete() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you wish to mark the task as complete?");
@@ -153,6 +186,10 @@ public class CommandReader {
         }
     }
 
+    /**
+     * Queries if user wants to sort list by title or by date
+     * @return boolean true if sort is by title
+     */
     public boolean getIfTitleSort() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to sort by TITLE or DATE?");

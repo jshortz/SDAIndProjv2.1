@@ -3,7 +3,7 @@
  * Not necessary, but makes working with the Scanner more easily understood syntactically
  * Alternate constructor takes a filename as a parameter and reads from the file rather than System.in
  * (Currently not used in program, may be deprecated)
- * @author  Jessica Shortz, based on work by Michael Kolling and David J. Barnes
+ * @author  Jessica Shortz
  * @version 2019.10.19
  */
 
@@ -33,7 +33,7 @@ public class InputReader {
     }
 
     /**
-     * A method to use a Scanner to read Strings
+     * Uses a Scanner to read Strings
      * @return next String that is input or read from a file
      */
     public String readString() {
@@ -41,7 +41,7 @@ public class InputReader {
     }
 
     /**
-     * A method to use a Scanner to read ints
+     * Uses a Scanner to read ints
      * @return next int that is input or read from a file
      */
     public int readInt() {
