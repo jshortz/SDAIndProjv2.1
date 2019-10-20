@@ -25,10 +25,25 @@ public class TaskList {
      */
     public void editTask() {
         Task taskToEdit = getTaskByTitle(commandReader.getTaskToEditFromUser());
+        if (taskToEdit == null) {
+            System.out.println("Your task list is empty or the title you supplied does not exist. Do you wish to enter a new title? Y or N?");
+            InputReader inputReader = new InputReader();
+            if (inputReader.readString().toUpperCase().equals("Y")) {
+                editTask();
+            }
+            return;
+        }
         InputReader inputReader = new InputReader();
         if (commandReader.editTitle()) {
             System.out.println("Please enter a new title:");
-            taskToEdit.title = inputReader.readString();
+            Task tempTask = new Task(taskToEdit.title, taskToEdit.project, taskToEdit.date, taskToEdit.description);
+            tempTask.title = inputReader.readString();
+            while (tempTask.isDuplicateTask(tempTask.title, tempTask.date, taskList) && !tempTask.title.toUpperCase().equals(taskToEdit.title.toUpperCase())) {
+                System.out.println("Your title change has created a duplicate task. Please enter a new title.");
+                tempTask.title = inputReader.readString();
+            }
+            taskToEdit.title = tempTask.title;
+            taskToEdit.id = "" + taskToEdit.title + taskToEdit.date.hashCode() + "";
         }
         if (commandReader.editProject()) {
             System.out.println("Please enter a new Project:");
@@ -39,7 +54,14 @@ public class TaskList {
             taskToEdit.description = inputReader.readString();
         }
         if (commandReader.editDate()) {
-            taskToEdit.date = commandReader.getDateFromUser();
+            Task tempTask = new Task(taskToEdit.title, taskToEdit.project, taskToEdit.date, taskToEdit.description);
+            tempTask.date = commandReader.getDateFromUser();
+            while (tempTask.isDuplicateTask(tempTask.title, tempTask.date, taskList)) {
+                System.out.println("Your date change has created a duplicate task. Please enter a new date.");
+                tempTask.date = commandReader.getDateFromUser();
+            }
+            taskToEdit.date = tempTask.date;
+            taskToEdit.id = "" + taskToEdit.title + taskToEdit.date.hashCode() + "";
         }
         if (commandReader.markComplete()) {
             taskToEdit.complete = true;
@@ -51,6 +73,10 @@ public class TaskList {
      */
     public void addTask() {
         Task taskToAdd = commandReader.getTaskToAddFromUser();
+        while (taskToAdd.isDuplicateTask(taskToAdd.title, taskToAdd.date, taskList)) {
+            System.out.println("The task you are trying to add is a duplicate of another task. Please try again.");
+            taskToAdd = commandReader.getTaskToAddFromUser();
+        }
         taskList.add(taskToAdd);
     }
 
