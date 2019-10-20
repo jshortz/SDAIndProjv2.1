@@ -9,7 +9,6 @@ package todolist;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 
 public class TaskList {
 
@@ -26,6 +25,14 @@ public class TaskList {
      */
     public void editTask() {
         Task taskToEdit = getTaskByTitle(commandReader.getTaskToEditFromUser());
+        if (taskToEdit == null) {
+            System.out.println("Your task list is empty or the title you supplied was invalid. Do you wish to enter a new title? Y or N?");
+            InputReader inputReader = new InputReader();
+            if (inputReader.readString().toUpperCase().equals("Y")) {
+                editTask();
+            }
+            return;
+        }
         InputReader inputReader = new InputReader();
         if (commandReader.editTitle()) {
             System.out.println("Please enter a new title:");
