@@ -8,6 +8,7 @@
 
 package todolist;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 // Serializable used to output stream to file and read back again
@@ -66,6 +67,39 @@ public class Task implements Serializable {
      */
     public GregorianCalendar getDate() {
         return date;
+    }
+
+    /**
+     * Checks whether a task is a duplicate of another task in the list
+     * @return boolean true if task is a duplicate
+     * @param titleToCheck the title of the task that is being checked for duplication
+     * @param dateToCheck the date of the task that is being checked for duplication
+     * @param taskList the list that contains the potential duplicates
+     */
+    public boolean isDuplicateTask(String titleToCheck, GregorianCalendar dateToCheck, ArrayList<Task> taskList) {
+        ArrayList<Task> potentialDuplicates = new ArrayList<>();
+        titleToCheck = titleToCheck.toUpperCase();
+        for (Task task : taskList) {
+            if (task.title.toUpperCase().equals(titleToCheck)) {
+                potentialDuplicates.add(task);
+            }
+        }
+
+        if (potentialDuplicates.size() == 0) {
+            return false;
+        } else {
+            int duplicateCounter = 0;
+            for (Task task : potentialDuplicates) {
+                if (task.date.equals(dateToCheck)) {
+                    duplicateCounter++;
+                }
+            }
+            if (duplicateCounter == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
 }
