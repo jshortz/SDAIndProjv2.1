@@ -26,7 +26,7 @@ public class TaskList {
     public void editTask() {
         Task taskToEdit = getTaskByTitle(commandReader.getTaskToEditFromUser());
         if (taskToEdit == null) {
-            System.out.println("Your task list is empty or the title you supplied was invalid. Do you wish to enter a new title? Y or N?");
+            System.out.println("Your task list is empty or the title you supplied does not exist. Do you wish to enter a new title? Y or N?");
             InputReader inputReader = new InputReader();
             if (inputReader.readString().toUpperCase().equals("Y")) {
                 editTask();
@@ -38,7 +38,7 @@ public class TaskList {
             System.out.println("Please enter a new title:");
             Task tempTask = new Task(taskToEdit.title, taskToEdit.project, taskToEdit.date, taskToEdit.description);
             tempTask.title = inputReader.readString();
-            while (tempTask.isDuplicateTask(tempTask.title, tempTask.date, taskList)) {
+            while (tempTask.isDuplicateTask(tempTask.title, tempTask.date, taskList) && !tempTask.title.toUpperCase().equals(taskToEdit.title.toUpperCase())) {
                 System.out.println("Your title change has created a duplicate task. Please enter a new title.");
                 tempTask.title = inputReader.readString();
             }
