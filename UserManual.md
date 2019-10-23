@@ -11,6 +11,9 @@
     4b. If you wish to edit a task that shares a title with another task:
         4b1. The potential tasks will be displayed.
         4b2. Task Manager will prompt you to enter the id of the task you want to edit. 
+    4c. If you have finished a task, you may change its status to complete with EDIT TASK.
+        4c1. If a task is marked as complete, it is permanently moved to a list of archived tasks.
+        4c2. This action cannot be undone, so select carefully!
 5. If you want to sort the to-do list, type "SORT LIST".
     5a. You will be given the option to sort by TITLE, PROJECT, or DATE.
         5a1. Sorting by title or project sorts the list alphabetically in descending (A-Z) order.
@@ -20,7 +23,7 @@
 6. If you want to remove a task, type "REMOVE TASK".
     6a. See 4b for a description of how duplicate tasks are handled.
 7. To save and quit, type "SAVE AND QUIT".
-    7a. This will save your task list to a file.
+    7a. This will save your task list and archived list to a file.
     7b. Task Manager will then close.
 
 ### We hope you enjoy using Task Manager!

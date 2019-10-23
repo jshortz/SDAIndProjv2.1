@@ -20,11 +20,11 @@ public class CommandReader {
     public Task getTaskToAddFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter a short title for your task.");
-        String title = inputReadFromUser.readString();
+        String title = inputReadFromUser.readString().trim();
         System.out.println("Please enter a project to associate with the task.");
-        String project = inputReadFromUser.readString();
+        String project = inputReadFromUser.readString().trim();
         System.out.println("Please enter a description of the task");
-        String description = inputReadFromUser.readString();
+        String description = inputReadFromUser.readString().trim();
         GregorianCalendar date = getDateFromUser();
         System.out.println();
         return new Task(title, project, date, description);
@@ -98,7 +98,7 @@ public class CommandReader {
     public String getTaskToEditFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the title of the task you wish to edit:");
-        return inputReadFromUser.readString();
+        return inputReadFromUser.readString().trim();
     }
 
     /**
@@ -108,7 +108,7 @@ public class CommandReader {
     public String getTaskToRemoveFromUser() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Please enter the title of the task you wish to remove:");
-        return inputReadFromUser.readString();
+        return inputReadFromUser.readString().trim();
     }
 
     /**
@@ -118,7 +118,7 @@ public class CommandReader {
     public boolean editTitle() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the title of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString().toUpperCase();
+        String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -133,7 +133,7 @@ public class CommandReader {
     public boolean editProject() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Project assigned to the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString().toUpperCase();
+        String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -148,7 +148,7 @@ public class CommandReader {
     public boolean editDescription() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Description of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString().toUpperCase();
+        String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -163,7 +163,7 @@ public class CommandReader {
     public boolean editDate() {
         InputReader inputReadFromUser = new InputReader();
         System.out.println("Do you want to edit the Due Date of the task? Enter Y or N.");
-        String answer = inputReadFromUser.readString().toUpperCase();
+        String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
             return true;
         } else {
@@ -177,7 +177,7 @@ public class CommandReader {
      */
     public boolean markComplete() {
         InputReader inputReadFromUser = new InputReader();
-        System.out.println("Do you wish to mark the task as complete? Enter Y or N. If Y, this will permanently move this Task to " +
+        System.out.println("Do you wish to mark the task as complete? Enter Y or N.\nIf Y, this will permanently move this Task to " +
                 "an archived list and you will no longer be able to edit the Task.");
         String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
