@@ -13,10 +13,12 @@ import java.util.Comparator;
 public class TaskList {
 
     protected ArrayList<Task> taskList;
+    protected ArrayList<Task> archivedTaskList;
     protected CommandReader commandReader;
 
     public TaskList() {
         taskList = new ArrayList<>();
+        archivedTaskList = new ArrayList<>();
         commandReader = new CommandReader();
     }
 
@@ -65,6 +67,8 @@ public class TaskList {
         }
         if (commandReader.markComplete()) {
             taskToEdit.complete = true;
+            archivedTaskList.add(taskToEdit);
+            removeTask(taskToEdit);
         }
     }
 
@@ -84,7 +88,12 @@ public class TaskList {
      * Displays the to-do list
      */
     public void displayList() {
+        System.out.println("\nYour incomplete tasks are:");
         for (Task task : taskList) {
+            System.out.println(task);
+        }
+        System.out.println("Completed tasks:\n");
+        for (Task task : archivedTaskList) {
             System.out.println(task);
         }
     }
@@ -146,8 +155,7 @@ public class TaskList {
     /**
      * Removes the selected Task from the list
      */
-    public void removeTask() {
-        Task taskToRemove = getTaskByTitle(commandReader.getTaskToRemoveFromUser());
+    public void removeTask(Task taskToRemove) {
         taskList.removeIf((task -> task == taskToRemove));
     }
 
@@ -159,6 +167,11 @@ public class TaskList {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(taskList);
         oos.close();
+
+        FileOutputStream fosArchive = new FileOutputStream("archiveTaskList.tmp");
+        ObjectOutputStream oosArchive = new ObjectOutputStream(fosArchive);
+        oosArchive.writeObject(archivedTaskList);
+        oosArchive.close();
     }
 
     /**
@@ -186,6 +199,20 @@ public class TaskList {
                 FileInputStream fis = new FileInputStream("taskList.tmp");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 taskList = (ArrayList<Task>) ois.readObject();
+                ois.close();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            } catch (ClassNotFoundException f) {
+                System.out.println(f.getMessage());
+            }
+        }
+
+        File archivedTaskListFile = new File("archiveTaskList.tmp");
+        if (archivedTaskListFile.exists()) {
+            try {
+                FileInputStream fis = new FileInputStream("archiveTaskList.tmp");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                archivedTaskList = (ArrayList<Task>) ois.readObject();
                 ois.close();
             } catch (IOException e) {
                 System.out.println(e.getMessage());

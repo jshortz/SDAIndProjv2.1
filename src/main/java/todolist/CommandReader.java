@@ -177,8 +177,9 @@ public class CommandReader {
      */
     public boolean markComplete() {
         InputReader inputReadFromUser = new InputReader();
-        System.out.println("Do you wish to mark the task as complete?");
-        String answer = inputReadFromUser.readString().toUpperCase();
+        System.out.println("Do you wish to mark the task as complete? Enter Y or N. If Y, this will permanently move this Task to " +
+                "an archived list and you will no longer be able to edit the Task.");
+        String answer = inputReadFromUser.readString().toUpperCase().trim();
         if (answer.equals("Y")) {
             return true;
         } else {

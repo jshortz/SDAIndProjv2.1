@@ -101,7 +101,8 @@ public class ExecutableShell {
                     }
                     break;
                 case "REMOVE TASK" :
-                    toDoList.removeTask();
+                    CommandReader commandReader = new CommandReader();
+                    toDoList.removeTask(toDoList.getTaskByTitle(commandReader.getTaskToRemoveFromUser()));
                     break;
                 case "SORT LIST" :
                     toDoList.sort();
