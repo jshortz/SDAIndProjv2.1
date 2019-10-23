@@ -9,6 +9,21 @@
 * Create design documents as needed to facilitate project
 * Design and implement unit testing
 
+### Versions
+* [First iteration](https://github.com/jshortz/SDA6ToDoList)
+    * Scrapped due to a massive refactoring/restructure of the code
+    * Very little work kept from this iteration (which never ran)
+* [Second iteration](https://github.com/jshortz/SDAIPv2)
+    * Scrapped due to build issues with Gradle/IntelliJ 
+        * Most likely due to the project not being created properly in the first place
+    * Needed refinement, but worked
+    * Work kept and built on for final iteration
+* [Final iteration](https://github.com/jshortz/SDAIndProjv2.1)
+    * What you're looking at right now
+    * Functionalities implemented, tests implemented, documentation added
+    * Early reach goals of implementing a GUI and external links removed early in the process
+    
+
 ### Timeline
 * 09.30: Project documents released
     * 10.01: Finish README
