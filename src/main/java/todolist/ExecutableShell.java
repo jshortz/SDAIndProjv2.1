@@ -33,7 +33,7 @@ public class ExecutableShell {
     public void displayWelcome() {
         System.out.println("Welcome to the Task Manager.");
         System.out.println("You have " + toDoList.getSizeOfCurrentList() + " active tasks and " +
-                toDoList.getSizeOfArchivedList() + "complete tasks.");
+                toDoList.getSizeOfArchivedList() + " complete tasks.");
         System.out.println("You may type HELP to view the user manual.");
     }
 
