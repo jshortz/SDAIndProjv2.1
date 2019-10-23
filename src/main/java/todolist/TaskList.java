@@ -154,7 +154,6 @@ public class TaskList {
     /**
      * Saves the list to an external file (taskList.tmp)
      */
-    // TODO: Rename method to reflect SAVE ONLY
     public void saveAndQuit() throws IOException {
         FileOutputStream fos = new FileOutputStream("taskList.tmp");
         ObjectOutputStream oos = new ObjectOutputStream(fos);

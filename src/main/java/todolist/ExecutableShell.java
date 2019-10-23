@@ -72,6 +72,7 @@ public class ExecutableShell {
      * @return boolean true if command is valid
      */
     public boolean isValidCommand(String command) {
+        command = command.toUpperCase();
         return commands.contains(command);
     }
 
