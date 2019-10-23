@@ -23,6 +23,32 @@
     * Functionalities implemented, tests implemented, documentation added
     * Early reach goals of implementing a GUI and external links removed early in the process
     
+### Reflection
+* I started this project by making a class diagram and an activity diagram
+* Before coding, I also created a series of milestones, one for each day, of what I would complete when 
+* As I moved into actually coding the project, it became clear that: 
+    * My class diagram would change... a lot
+    * My activity diagram was more static
+    * My milestones were hilariously optimistic
+* My first iteration of the project was a huge failure and a huge learning opportunity
+    * It never ran
+    * I built everything all at once rather than implementing a method or so at a time
+        * Which is why it never ran
+        * I don't regret this, because I learned a lot about good practices from it
+* There were some things that I thought would be enormously difficult that were actually quite simple (like sorting my lists)
+    * There were also things that were more difficult than I anticipated (preventing duplicates)
+* The one that got away:
+    * Making a more friendly id for the user to enter
+        * ID is currently the title of the Task plus a hash based on the due date
+        * So if the title is really long, the ID will be really long as well
+        * With more time, I'm sure I could have come up with something better
+        * Though inelegant, this works as-is
+* Areas for growth/practice:
+    * More cohesion
+    * Designing methods so that they're not reliant on user input
+        * Have other methods that get the user input
+        * This was a weakness I observed in particular with my unit tests
+    * Making good decisions about whether to make a method/variable static/non-static 
 
 ### Timeline
 * 09.30: Project documents released
