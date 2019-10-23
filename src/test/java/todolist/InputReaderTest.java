@@ -1,8 +1,6 @@
 package todolist;
 import org.junit.Test;
-
 import java.io.FileNotFoundException;
-
 import static org.junit.Assert.assertEquals;
 
 public class InputReaderTest {
