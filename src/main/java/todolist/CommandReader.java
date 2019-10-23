@@ -190,18 +190,14 @@ public class CommandReader {
      * Queries if user wants to sort list by title or by date
      * @return boolean true if sort is by title
      */
-    public boolean getIfTitleSort() {
+    public String getTypeOfSort() {
         InputReader inputReadFromUser = new InputReader();
-        System.out.println("Do you want to sort by TITLE or DATE?");
-        String userSortAnswer = inputReadFromUser.readString().toUpperCase();
-        if ((!userSortAnswer.equals("TITLE")) && (!userSortAnswer.equals("DATE"))) {
-            System.out.println("Please enter TITLE or DATE.");
-            userSortAnswer = inputReadFromUser.readString().toUpperCase();
+        System.out.println("Do you want to sort by TITLE, PROJECT, or DATE?");
+        String userSortAnswer = inputReadFromUser.readString().toUpperCase().trim();
+        if ((!userSortAnswer.equals("TITLE")) && (!userSortAnswer.equals("DATE")) && (!userSortAnswer.equals("PROJECT"))) {
+            System.out.println("Please enter TITLE, PROJECT, or DATE.");
+            userSortAnswer = inputReadFromUser.readString().toUpperCase().trim();
         }
-        if (userSortAnswer.equals("TITLE")) {
-            return true;
-        } else {
-            return false;
-        }
+        return userSortAnswer;
     }
 }

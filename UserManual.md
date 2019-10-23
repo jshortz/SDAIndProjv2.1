@@ -12,10 +12,11 @@
         4b1. The potential tasks will be displayed.
         4b2. Task Manager will prompt you to enter the id of the task you want to edit. 
 5. If you want to sort the to-do list, type "SORT LIST".
-    5a. You will be given the option to sort by TITLE or DATE.
-        5a1. Sorting by title sorts the list alphabetically in descending (A-Z) order.
+    5a. You will be given the option to sort by TITLE, PROJECT, or DATE.
+        5a1. Sorting by title or project sorts the list alphabetically in descending (A-Z) order.
         5a2. Tasks with the same title will be sorted by date.
-        5a3. Sorting by date sorts the list from earliest task to latest task.
+        5a3. Tasks with the same project will be sorted by title and then by date.
+        5a4. Sorting by date sorts the list from earliest task to latest task.
 6. If you want to remove a task, type "REMOVE TASK".
     6a. See 4b for a description of how duplicate tasks are handled.
 7. To save and quit, type "SAVE AND QUIT".

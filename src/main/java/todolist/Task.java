@@ -62,6 +62,14 @@ public class Task implements Serializable {
     }
 
     /**
+     * Returns the project of a Task
+     * @return String project
+     */
+    public String getProject() {
+        return project;
+    }
+
+    /**
      * Returns the date of a Task
      * @return GregorianCalendar date of a Task
      */
@@ -101,5 +109,4 @@ public class Task implements Serializable {
             }
         }
     }
-
 }
