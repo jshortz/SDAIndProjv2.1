@@ -86,7 +86,7 @@ public class Task implements Serializable {
      */
     public boolean isDuplicateTask(String titleToCheck, GregorianCalendar dateToCheck, ArrayList<Task> taskList) {
         ArrayList<Task> potentialDuplicates = new ArrayList<>();
-        titleToCheck = titleToCheck.toUpperCase();
+        titleToCheck = titleToCheck.toUpperCase().trim();
         for (Task task : taskList) {
             if (task.title.toUpperCase().equals(titleToCheck)) {
                 potentialDuplicates.add(task);

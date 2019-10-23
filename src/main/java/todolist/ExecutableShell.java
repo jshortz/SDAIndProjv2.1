@@ -30,8 +30,11 @@ public class ExecutableShell {
     /**
      * Displays a welcome message to the user
      */
-    public static void displayWelcome() {
-        System.out.println("Welcome to the Task Manager. You may type HELP to view the user manual.");
+    public void displayWelcome() {
+        System.out.println("Welcome to the Task Manager.");
+        System.out.println("You have " + toDoList.getSizeOfCurrentList() + " active tasks and " +
+                toDoList.getSizeOfArchivedList() + "complete tasks.");
+        System.out.println("You may type HELP to view the user manual.");
     }
 
     /**
@@ -63,7 +66,7 @@ public class ExecutableShell {
      */
     public static String getCommand() {
         InputReader userInputReader = new InputReader();
-        String command = userInputReader.readString();
+        String command = userInputReader.readString().trim();
         return command;
     }
 
@@ -81,7 +84,7 @@ public class ExecutableShell {
      * @param command of user choice
      */
     public void processCommand(String command) throws IOException {
-        command = command.toUpperCase();
+        command = command.toUpperCase().trim();
         if (isValidCommand(command)) {
             switch (command) {
                 case "HELP" :
@@ -101,7 +104,8 @@ public class ExecutableShell {
                     }
                     break;
                 case "REMOVE TASK" :
-                    toDoList.removeTask();
+                    CommandReader commandReader = new CommandReader();
+                    toDoList.removeTask(toDoList.getTaskByTitle(commandReader.getTaskToRemoveFromUser()));
                     break;
                 case "SORT LIST" :
                     toDoList.sort();
@@ -120,12 +124,13 @@ public class ExecutableShell {
         System.out.println("Please enter any of the following commands:");
         System.out.println("(Note that any command other than 'SAVE AND QUIT' will lead to a new prompt for a command)");
         shell.displayCommands();
-        String command = getCommand().toUpperCase();
+        String command = getCommand().toUpperCase().trim();
         if (!command.equals("SAVE AND QUIT")) {
             shell.processCommand(command);
             queryUserForCommand();
         } else {
-            System.out.println("Thank you for using Task Manager. The next time you start, your list will be loaded automatically.");
+            System.out.println("Thank you for using Task Manager. " +
+                    "\nThe next time you start, your list (current and complete tasks) will be loaded automatically.");
             toDoList.saveAndQuit();
         }
     }
@@ -142,7 +147,7 @@ public class ExecutableShell {
      */
     public static void main(String[] args) throws IOException {
         shell.loadList();
-        displayWelcome();
+        shell.displayWelcome();
         shell.queryUserForCommand();
     }
 }
