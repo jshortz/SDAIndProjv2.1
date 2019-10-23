@@ -167,8 +167,12 @@ public class TaskList {
      */
     public void sort() {
         taskList.sort(Comparator.comparing(Task::getDate));
-        if (commandReader.getIfTitleSort()) {
+        String typeOfSort = commandReader.getTypeOfSort().toUpperCase().trim();
+        if (!typeOfSort.equals("DATE")) {
             taskList.sort(Comparator.comparing(Task::getTitle));
+        }
+        if (typeOfSort.equals("PROJECT")) {
+            taskList.sort(Comparator.comparing(Task::getProject));
         }
     }
 
